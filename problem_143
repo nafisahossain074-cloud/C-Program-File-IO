@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char zipname[100];
+    printf("Enter zip file name: ");
+    scanf("%s", zipname);
+
+    char command[200];
+    sprintf(command, "unzip -l %s", zipname);
+
+    system(command);
+
+    return 0;
+}
