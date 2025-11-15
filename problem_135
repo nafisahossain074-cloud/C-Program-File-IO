@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+struct Student {
+    int id;
+    float marks;
+    char name[30];
+};
+
+int main() {
+    struct Student s1, s2;
+    FILE *fp;
+
+    printf("Enter ID Marks Name: ");
+    scanf("%d %f %s", &s1.id, &s1.marks, s1.name);
+
+    fp = fopen("student.dat", "wb");
+    if(fp == NULL) {
+        printf("File error.");
+        return 1;
+    }
+    fwrite(&s1, sizeof(s1), 1, fp);
+    fclose(fp);
+
+    fp = fopen("student.dat", "rb");
+    if(fp == NULL) {
+        printf("File error.");
+        return 1;
+    }
+    fread(&s2, sizeof(s2), 1, fp);
+    fclose(fp);
+
+    printf("\nStored Data:\n");
+    printf("%d %.2f %s\n", s2.id, s2.marks, s2.name);
+
+    return 0;
+}
