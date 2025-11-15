@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    char oldname[100], newname[100];
+    FILE *fp;
+
+    printf("Enter existing file name: ");
+    scanf("%s", oldname);
+
+    fp = fopen(oldname, "r");
+    if (fp == NULL) {
+        printf("File does not exist.\n");
+        return 1;
+    }
+    fclose(fp);
+
+    printf("Enter new file name: ");
+    scanf("%s", newname);
+
+    if (rename(oldname, newname) == 0)
+        printf("File renamed successfully.\n");
+    else
+        printf("Unable to rename file.\n");
+
+    return 0;
+}
